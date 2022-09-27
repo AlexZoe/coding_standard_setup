@@ -1,0 +1,4 @@
+[fix] Array Out-of-bounds Access
+
+Perform bounds check on index passed to function before using it for 
+array access.

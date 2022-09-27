@@ -1,0 +1,32 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+WORK_DIR=$(pwd)
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	# Initial commit: diff against an empty tree object
+	against=$(git hash-object -t tree /dev/null)
+fi
+
+declare -i errors=0
+
+files=$(git diff --cached --name-only $against)
+
+for file in $files; do
+    python3 ${SCRIPT_DIR}/../linter.py --src $file \
+            --ignore-list=${WORK_DIR}/.lint_ignore
+    if [[ $? != 0 ]]; then
+        errors+=1
+    fi
+done
+
+if [[ $errors != 0 ]]; then
+    echo "Check formatting and linting on offending file(s)"
+    echo "Errors: ${errors}"
+    exit 1
+fi
+
+exit 0

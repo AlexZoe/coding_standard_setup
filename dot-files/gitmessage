@@ -1,0 +1,23 @@
+# [<type>] Description
+#
+# optional body
+#
+
+# <type>:
+# feat      a new feature is introduced with the changes
+# fix       a bug fix has occurred
+# refactor  refactored code that neither fixes a bug nor adds a feature
+# docs      updates to documentation such as the README or code comments
+# format    changes that do not affect the meaning of the code (naming, spacing,
+#           etc.)
+# test      including new or correcting previous tests
+# perf      performance improvements
+# ci-cd     continuous integration related
+# build     changes that affect the build system or external dependencies
+# wip       work in progress
+# rework    changes the behavior of existing code, e.g. for accommodating future
+#           changes
+
+# The line length of the subject line is limited to 50 characters and must not
+# contain a dot at the end.
+# The maximum line length for the body is 72 characters.

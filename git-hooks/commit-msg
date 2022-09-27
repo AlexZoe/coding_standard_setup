@@ -1,0 +1,12 @@
+#!/bin/bash
+
+subjects=(feat fix refactor docs format test perf ci-cd build wip rework)
+for subject in ${subjects[@]}; do
+  result=$(head -n 1 ${1} | grep "\[$subject\] ")
+  if [[ $result != "" ]]; then
+    exit 0
+  fi
+done
+
+echo "Fix git commit message format"
+exit 1
